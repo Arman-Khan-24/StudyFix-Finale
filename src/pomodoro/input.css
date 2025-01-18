@@ -1,0 +1,330 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #111827;
+  min-height: 100vh;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Fullscreen Modal */
+#fullscreen-modal {
+  position: fixed;
+  inset: 0;
+  background-color: #111827;
+  display: none;
+  z-index: 50;
+}
+
+.exit-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+#exit-fullscreen {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+#exit-fullscreen:hover {
+  color: #d1d5db;
+}
+
+.fullscreen-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+#fullscreen-timer {
+  font-size: 6rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+
+.fullscreen-controls {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.fullscreen-controls button {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.fullscreen-controls button:hover {
+  background-color: #4338ca;
+}
+
+#fullscreen-reset {
+  background-color: #4b5563;
+}
+
+#fullscreen-reset:hover {
+  background-color: #374151;
+}
+
+/* Header */
+.header {
+  padding-top: 1rem;
+}
+
+#task-form {
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+.task-input-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#task-input {
+  flex: 1;
+  background-color: rgba(31, 41, 55, 0.5);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+}
+
+#task-input::placeholder {
+  color: #9ca3af;
+}
+
+#task-input:focus {
+  box-shadow: 0 0 0 2px #6366f1;
+}
+
+#task-form button {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#task-form button:hover {
+  background-color: #4338ca;
+}
+
+#tasks-list {
+  margin-top: 1rem;
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Timer Section */
+.timer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.timer-circle {
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+}
+
+.timer-circle svg {
+  transform: rotate(-90deg);
+}
+
+.timer-background {
+  stroke: #374151;
+  stroke-width: 8;
+  fill: none;
+}
+
+#progress-circle {
+  stroke: #6366f1;
+  stroke-width: 8;
+  fill: none;
+  stroke-dasharray: 942;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s;
+}
+
+.timer-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#timer {
+  font-size: 3rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.timer-controls {
+  margin-top: 2rem;
+}
+
+.timer-controls button {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.timer-controls button:hover {
+  background-color: #4338ca;
+}
+
+#stop-btn {
+  background-color: #4b5563;
+}
+
+#stop-btn:hover {
+  background-color: #374151;
+}
+
+.bottom-controls {
+  margin-top: 2rem;
+  display: flex;
+  gap: 3rem;
+}
+
+.bottom-controls button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.bottom-controls button:hover {
+  color: white;
+}
+
+.bottom-controls button svg {
+  margin-bottom: 0.5rem;
+}
+
+.bottom-controls button span {
+  font-size: 0.875rem;
+}
+
+/* Right Panel */
+.right-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 18rem;
+  background-color: rgba(31, 41, 55, 0.9);
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.focus-time {
+  margin-bottom: 2rem;
+}
+
+.focus-time h2 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.focus-time-display {
+  font-size: 1.875rem;
+  font-weight: 300;
+}
+
+.focus-time-display .minutes {
+  font-size: 0.875rem;
+}
+
+.today-tasks {
+  margin-bottom: 2rem;
+}
+
+.today-tasks h2 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+#add-task-btn {
+  width: 100%;
+  background-color: rgba(79, 70, 229, 0.5);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#add-task-btn:hover {
+  background-color: #4f46e5;
+}
+
+.focus-records h2 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.progress-bar {
+  height: 0.25rem;
+  background-color: rgba(79, 70, 229, 0.3);
+  border-radius: 9999px;
+}
+
+#focus-progress {
+  height: 100%;
+  background-color: #4f46e5;
+  border-radius: 9999px;
+  width: 0%;
+}
+
+.time-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 0.5rem;
+}

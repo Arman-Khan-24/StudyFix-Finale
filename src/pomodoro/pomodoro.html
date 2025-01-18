@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Focus Timer</title>
+    <link href="/src/pomodoro/input.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Fullscreen Timer Modal -->
+    <div id="fullscreen-modal">
+      <div class="exit-button">
+        <button id="exit-fullscreen">
+          <svg width="32" height="32" viewBox="0 0 24 24">
+            <path d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="fullscreen-content">
+        <div id="fullscreen-timer">24:58</div>
+        <div class="fullscreen-controls">
+          <button id="fullscreen-play">Play</button>
+          <button id="fullscreen-reset">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <form id="task-form">
+          <div class="task-input-container">
+            <input
+              type="text"
+              placeholder="Add a new task..."
+              id="task-input"
+            />
+            <button type="submit">Add Task</button>
+          </div>
+        </form>
+        <div id="tasks-list"></div>
+      </div>
+
+      <!-- Timer Section -->
+      <div class="timer-section">
+        <!-- Timer Circle -->
+        <div class="timer-circle">
+          <svg viewBox="0 0 320 320">
+            <circle cx="160" cy="160" r="150" class="timer-background" />
+            <circle id="progress-circle" cx="160" cy="160" r="150" />
+          </svg>
+          <div class="timer-display">
+            <div id="timer">24:58</div>
+          </div>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="timer-controls">
+          <button id="continue-btn">Continue</button>
+          <button id="stop-btn">Stop</button>
+        </div>
+
+        <!-- Bottom Controls -->
+        <div class="bottom-controls">
+          <button id="fullscreen-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path
+                d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+              />
+            </svg>
+            <span>Fullscreen</span>
+          </button>
+          <button id="white-noise-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path
+                d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414 1.414m2.828-9.9a9 9 0 012.728-2.728"
+              />
+            </svg>
+            <span>White Noise</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Panel -->
+      <div class="right-panel">
+        <div class="focus-time">
+          <h2>Focus Time of Today</h2>
+          <div class="focus-time-display">
+            <span id="focus-time">0</span><span class="minutes">m</span>
+          </div>
+        </div>
+
+        <div class="today-tasks">
+          <h2>Today's Tasks</h2>
+          <div id="today-tasks">
+            <!-- Tasks will be added here -->
+          </div>
+          <button id="add-task-btn">+ Add Task</button>
+        </div>
+
+        <div class="focus-records">
+          <h2>Today's Focus Time Records</h2>
+          <div class="progress-bar">
+            <div id="focus-progress"></div>
+          </div>
+          <div class="time-labels">
+            <span>18:00</span>
+            <span>19:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

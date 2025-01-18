@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyBuddy Dashboard</title>
+    <meta name="description" content="Lovable Generated Project" />
+    <meta name="author" content="Lovable" />
+    <meta property="og:image" content="/og-image.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .gradient-card {
+        background: linear-gradient(
+          225deg,
+          #ffe29f 0%,
+          #ffa99f 48%,
+          #ff719a 100%
+        );
+      }
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: #9333ea;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+      .hover-pulse:hover {
+        animation: pulse 2s infinite;
+      }
+    </style>
+  </head>
+
+  <body
+    class="min-h-screen bg-gradient-to-br from-gray-50 to-purple-50 dark:from-gray-900 dark:to-purple-900 transition-colors duration-300"
+  >
+    <!-- Navigation -->
+    <nav
+      class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-lg sticky top-0 z-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <img
+              src="/src/media/Studyfix-logo.png"
+              alt="StudyFix"
+              class="h-8 w-8 hover-pulse"
+            />
+            <span
+              class="ml-2 text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
+              >StudyFix Dashboard</span
+            >
+          </div>
+
+          <!-- Navigation Links -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="/pomodoro.html"
+              class="nav-link text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 transition-colors"
+            >
+              Pomodoro Timer
+            </a>
+            <a
+              href="/fitness.html"
+              class="nav-link text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 transition-colors"
+            >
+              Fitness Tracker
+            </a>
+            <a
+              href="/community.html"
+              class="nav-link text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 transition-colors"
+            >
+              Community
+            </a>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <!-- Mobile Menu Button -->
+            <button
+              class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              onclick="toggleMobileMenu()"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+
+            <button
+              class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-gray-500 dark:text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </button>
+            <div class="relative">
+              <img
+                src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
+                alt="Profile"
+                class="h-8 w-8 rounded-full ring-2 ring-purple-500 hover:ring-4 transition-all cursor-pointer"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Menu -->
+      <div
+        id="mobileMenu"
+        class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg"
+      >
+        <div class="px-4 py-2 space-y-2">
+          <a
+            href="/pomodoro.html"
+            class="block p-2 rounded-lg hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors"
+          >
+            Pomodoro Timer
+          </a>
+          <a
+            href="/fitness.html"
+            class="block p-2 rounded-lg hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors"
+          >
+            Fitness Tracker
+          </a>
+          <a
+            href="/community.html"
+            class="block p-2 rounded-lg hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors"
+          >
+            Community
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <!-- Stats Overview -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <!-- Study Time Card -->
+        <div
+          class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md p-6 rounded-lg shadow-xl transition-transform hover:scale-[1.02]"
+        >
+          <div class="flex justify-between items-center pb-2">
+            <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">
+              Today's Study Time
+            </h3>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 text-blue-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+              />
+            </svg>
+          </div>
+          <div class="text-2xl font-bold text-gray-900 dark:text-white">
+            4h 23m
+          </div>
+          <p class="text-xs text-green-500 flex items-center mt-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-3 w-3 mr-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+              />
+            </svg>
+            +12% from yesterday
+          </p>
+        </div>
+
+        <!-- Exercise Card -->
+        <div
+          class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md p-6 rounded-lg shadow-xl transition-transform hover:scale-[1.02]"
+        >
+          <div class="flex justify-between items-center pb-2">
+            <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">
+              Exercise Duration
+            </h3>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 text-purple-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"
+              />
+              <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="text-2xl font-bold text-gray-900 dark:text-white">
+            45m
+          </div>
+          <p class="text-xs text-green-500 flex items-center mt-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-3 w-3 mr-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+              />
+            </svg>
+            On track with goal
+          </p>
+        </div>
+
+        <!-- Focus Sessions Card -->
+        <div
+          class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md p-6 rounded-lg shadow-xl transition-transform hover:scale-[1.02]"
+        >
+          <div class="flex justify-between items-center pb-2">
+            <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">
+              Focus Sessions
+            </h3>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 text-yellow-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+              />
+            </svg>
+          </div>
+          <div class="text-2xl font-bold text-gray-900 dark:text-white">
+            3/5
+          </div>
+          <p class="text-xs text-gray-500 mt-1">Daily Goal Progress</p>
+        </div>
+
+        <!-- Community Points Card -->
+        <div
+          class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md p-6 rounded-lg shadow-xl transition-transform hover:scale-[1.02]"
+        >
+          <div class="flex justify-between items-center pb-2">
+            <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">
+              Community Points
+            </h3>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 text-green-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+          </div>
+          <div class="text-2xl font-bold text-gray-900 dark:text-white">
+            847
+          </div>
+          <p class="text-xs text-green-500 flex items-center mt-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-3 w-3 mr-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+              />
+            </svg>
+            Level 5 Achiever
+          </p>
+        </div>
+      </div>
+
+      <!-- Main Grid -->
+      <div
+        class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
+      >
+        <!-- Activity Feed -->
+        <div
+          class="lg:col-span-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl shadow-xl transition-transform hover:scale-[1.02]"
+        >
+          <div class="p-6">
+            <h2
+              class="text-lg font-semibold mb-4 text-gray-900 dark:text-white"
+            >
+              Recent Activity
+            </h2>
+            <div class="space-y-4">
+              <!-- Activity Item 1 -->
+              <div class="flex items-center space-x-4">
+                <div
+                  class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-blue-500"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-gray-900 dark:text-white">
+                    Completed Pomodoro Session
+                  </p>
+                  <p class="text-xs text-gray-500">25 minutes ago</p>
+                </div>
+              </div>
+
+              <!-- Activity Item 2 -->
+              <div class="flex items-center space-x-4">
+                <div
+                  class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-green-500"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-gray-900 dark:text-white">
+                    Joined Study Group: Mathematics
+                  </p>
+                  <p class="text-xs text-gray-500">2 hours ago</p>
+                </div>
+              </div>
+
+              <!-- Activity Item 3 -->
+              <div class="flex items-center space-x-4">
+                <div
+                  class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-purple-500"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"
+                    />
+                    <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-gray-900 dark:text-white">
+                    Workout Session Completed
+                  </p>
+                  <p class="text-xs text-gray-500">4 hours ago</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <!-- AI Assistant -->
+          <div
+            class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl shadow-xl transition-transform hover:scale-[1.02]"
+          >
+            <div class="p-6">
+              <h2
+                class="text-lg font-semibold flex items-center gap-2 mb-4 text-gray-900 dark:text-white"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 text-purple-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"
+                  />
+                </svg>
+                AI Assistant
+              </h2>
+              <div class="p-4 bg-purple-50 dark:bg-gray-700 rounded-lg">
+                <p class="text-sm text-gray-600 dark:text-gray-300">
+                  "Based on your study patterns, I suggest taking a break in 15
+                  minutes."
+                </p>
+              </div>
+              <a
+                href="https://www.chatbase.co/chatbot-iframe/R-WLjeepu7Oa8FqPisdF8"
+                class="mt-5 w-full bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-600 transition-colors"
+              >
+                Ask AI Assistant
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div
+            class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl shadow-xl"
+          >
+            <div class="p-6">
+              <h2
+                class="text-lg font-semibold mb-4 text-gray-900 dark:text-white"
+              >
+                Quick Actions
+              </h2>
+              <div class="space-y-2">
+                <a
+                  href="/src/pomodoro/pomodoro.html"
+                  class="block w-full text-left px-4 py-3 text-sm rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 transition-colors"
+                >
+                  Start Pomodoro Session
+                </a>
+                <a
+                  href="/src/community/community.html"
+                  class="block w-full text-left px-4 py-3 text-sm rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 transition-colors"
+                >
+                  Join Study Group
+                </a>
+                <a
+                  href="/src/fitness/fitness.html"
+                  class="block w-full text-left px-4 py-3 text-sm rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:from-green-600 hover:to-emerald-600 transition-colors"
+                >
+                  View Workout Plan
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobileMenu");
+        mobileMenu.classList.toggle("hidden");
+      }
+
+      // Add smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
